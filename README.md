@@ -19,8 +19,30 @@
 ## URL for api docs in swagger:
 http://127.0.0.1:8000/docs
 
-## Python code for pairing
+## Python code for Swiss pairing:
 ```python
+"""
+Swiss pairing system.
+It sorts the players in descending order and divides it to 2 groups. 
+First group's first player plays with second group's first player and so on
+
+1. C -p3 - 2100
+2. D - p4 - 1900
+3. B - p2 - 1800
+------------
+4. G - p7 - 1300
+5. F - p6 - 1250
+6. A - p1 - 1200
+7. E - p5 - 800 -> This player gets "Bye" and scores 1 point
+
+Matches:
+C vs G
+D vs F
+B vs A
+
+Loser gets 0, Winner gets 1 and in draw, both of them get 0.5
+"""
+
 class Player:
     def __init__(self, name, rating=0):
         self.name = name
@@ -51,13 +73,11 @@ def swiss_pairing(players):
         pairs.append([player1, player2])
         print(f"Match {i+1}: {player1.name} vs {player2.name}")
     
-
-    for i in range(mid):
-        result = input(f"Enter the result of match {i+1} (Pattern: 0-1): ").split("-")
         
-        for j in pairs:
-            j[0].score += float(result[0])
-            j[1].score += float(result[1])
+    for i, (player1, player2) in enumerate(pairs):
+        result = input(f"Enter the result of match {i+1} (Pattern: 0-1): ").split("-")
+        player1.score += float(result[0])
+        player2.score += float(result[1])
 
 
 
