@@ -108,12 +108,8 @@ WSGI_APPLICATION = 'chess.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'chess_tournament',
-        'USER': 'postgres',
-        'PASSWORD': 'Jonibek_2004',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3'
     }
 }
 
